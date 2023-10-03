@@ -1,0 +1,13 @@
+
+<header class="bg-blue-600 shadow-2" >
+  <div class="flex justify-content-between align-items-center p-4">
+    <h1 class="m-2 text-white">產線狀態即時查詢系統</h1>
+
+    <div>
+      <p-button icon="pi pi-sign-in" label="會員登入" *ngIf="!isLogin" routerLink="/new-apply" (click)="logInandOut()" styleClass="p-button-success"></p-button>
+      <p-button icon="pi pi-sign-out" label="會員登出" *ngIf="isLogin"  routerLink="/information-list" (click)="logInandOut()" styleClass="p-button-danger"></p-button>
+    </div>
+
+    <!-- 用ngif做登入登出顯示 -->
+  </div>
+</header>
