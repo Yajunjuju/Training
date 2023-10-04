@@ -3,23 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { SidebarModule } from 'primeng/sidebar';
+
 
 import { AppComponent } from './app.component';
 import { InformationListComponent } from './main/information-list/information-list.component';
 import { NewApplyComponent } from './main/new-apply/new-apply.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { DropdownModule } from 'primeng/dropdown';
-
-import { SharedModule } from './shared/shared.module';
-import { LoginComponent } from './main/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CalendarModule } from 'primeng/calendar';
-import { InputTextModule } from 'primeng/inputtext';
 import { MainComponent } from './main/main.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { MainComponent } from './main/main.component';
     NewApplyComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
     MainComponent
   ],
   imports: [
@@ -42,8 +41,10 @@ import { MainComponent } from './main/main.component';
     ButtonModule,
     DropdownModule,
     SharedModule,
-    CalendarModule,
     InputTextModule,
+    DialogModule,
+    SidebarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

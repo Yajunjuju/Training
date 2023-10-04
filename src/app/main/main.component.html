@@ -1,9 +1,20 @@
-<nav class="flex h-screen" >
-  <ul class="bg-gray-200 p-5 list-none">
-    <li><a routerLink="/information-list" routerLinkActive="active">機台資訊列表</a></li>
-    <li><a routerLink="/new-apply" routerLinkActive="active">新機台申請</a></li>
-  </ul>
-  <div class="flex-grow-1">
+
+<nav class="min-h-screen grid grid-nogutter" >
+
+  <aside class="bg-gray-200 text-xl font-bold xl:col-2 lg:col-3">
+    <div routerLink="/information-list" routerLinkActive="active" class="px-5 py-4 text-center hover:text-cyan-700">機台資訊列表</div>
+    <div routerLink="/new-apply" routerLinkActive="active" class="px-5 py-4 text-center cursor-pointer hover:text-cyan-700">新機台申請</div>
+  </aside>
+
+  <div class="md_screen ">
+    <p-sidebar [(visible)]="sidebarVisible"  [fullScreen]="true">
+      <div routerLink="/information-list" routerLinkActive="active" class="px-5 py-4 text-center hover:text-cyan-700">機台資訊列表</div>
+      <div routerLink="/new-apply" routerLinkActive="active" class="px-5 py-4 text-center cursor-pointer hover:text-cyan-700">新機台申請</div>
+    </p-sidebar>
+    <p-button (click)="sidebarVisible = true" icon="pi pi-th-large" ></p-button>
+  </div>
+
+  <div class="xl:col-10 lg:col-9 col-12 ">
     <router-outlet></router-outlet>
   </div>
 </nav>

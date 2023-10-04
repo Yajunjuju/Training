@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class MainComponent {
 
+  sidebarVisible: boolean = false;
   @Input() isLogin:boolean;
 
 }

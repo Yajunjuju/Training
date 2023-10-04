@@ -1,7 +1,7 @@
 
-<header class="bg-blue-600 shadow-2" >
+<header class="bg-blue-600 shadow-2 z-1" >
   <div class="flex justify-content-between align-items-center p-4">
-    <h1 class="m-2 text-white">產線狀態即時查詢系統</h1>
+    <h1 class="m-2 text-white md:text-3xl">產線狀態即時查詢系統</h1>
 
     <div>
       <p-button icon="pi pi-sign-in" label="會員登入" *ngIf="!isLogin" routerLink="/new-apply" (click)="logInandOut()" styleClass="p-button-success"></p-button>

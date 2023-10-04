@@ -1,0 +1,17 @@
+.active{
+  background-color: lightblue;
+}
+
+.md_screen{
+  display: none;
+}
+
+@media screen and (max-width:992px) {
+  aside{
+    display: none;
+  }
+
+  .md_screen{
+    display: block;
+  }
+}

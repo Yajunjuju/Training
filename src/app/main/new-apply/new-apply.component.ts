@@ -1,3 +1,4 @@
+import { ApplyList } from './apply-list';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -12,6 +13,8 @@ export class NewApplyComponent implements OnInit  {
 
   // 綁定表單名稱及型別
   newApplyForm:FormGroup;
+  visible: boolean = false;
+  applyList:ApplyList[]=[];
 
   @Input() isLogin:boolean;
 
@@ -37,5 +40,18 @@ export class NewApplyComponent implements OnInit  {
 
   onSubmit(){
     console.log(this.newApplyForm.value)
+  }
+
+  showDialog() {
+      this.visible = true;
+  }
+
+  cancelApply(){
+    this.newApplyForm.reset();
+  }
+
+  confirmApply(){
+    this.applyList.unshift(this.newApplyForm.value);
+    this.newApplyForm.reset();
   }
 }

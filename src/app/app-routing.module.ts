@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { InformationListComponent } from './main/information-list/information-list.component';
 import { NewApplyComponent } from './main/new-apply/new-apply.component';
-import { LoginComponent } from './main/login/login.component';
 
 
 const routes: Routes = [
@@ -14,12 +13,7 @@ const routes: Routes = [
   {
     path:'new-apply',
     component:NewApplyComponent
-  },
-  {
-    path:'login',
-    component:LoginComponent
-  },
-  // { path: '**', redirectTo: ''}
+  }
 ];
 
 @NgModule({

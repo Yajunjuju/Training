@@ -1,13 +1,10 @@
 <h3 class="text-3xl text-center p-5">機台資訊列表</h3>
 
-
 <div class="flex justify-content-center gap-6 p-3">
   <p-dropdown [options]="factories" [(ngModel)]="selectedfactory" optionLabel="factoryName" placeholder="請選擇廠區" (onChange)="selectFactory($event.value.factoryName)" (click)="reset()"></p-dropdown>
   <p-dropdown [options]="productionOptions[0]" [(ngModel)]="selectedproduction" optionLabel="name" placeholder="請選擇產線" *ngIf="selectedfactory" (click)="reset()"></p-dropdown>
   <p-button label="查詢" (click)="quireButton()"></p-button>
 </div>
-
-
 
 <div class="m-5">
   <p-table [value]="datas" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10]">
