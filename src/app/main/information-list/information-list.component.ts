@@ -15,9 +15,11 @@ export class InformationListComponent implements OnInit{
 
   selectedfactory:any;
   selectedproduction:any;
+  selectedmachine:any;
 
-  factories:Array<any> = [];
-  productionOptions:Array<any> = [];
+  factoryList:Array<any> = [];
+  productionList:Array<any> = [];
+  machineList:Array<any> = [];
 
   constructor(private datasvc:DataService){}
 
@@ -30,7 +32,7 @@ export class InformationListComponent implements OnInit{
 
   }
 
-  getDataList(factoryName?: string){
+  getDataList(){
     this.datasvc.getData().subscribe(res =>{
       this.datas = res;
     });
@@ -40,8 +42,24 @@ export class InformationListComponent implements OnInit{
   // 取得下拉選單資料
   getFactoryList(){
     this.datasvc.getFactory().subscribe(res =>{
-      this.factories = res;
+      this.factoryList = res;
     });
+  }
+
+
+
+  getProductionList(factoryName:string) {
+    this.productionList = this.factoryList
+      .filter((item) => {return item.factoryName == factoryName })
+      .map(item => {return item = item.production });
+  }
+
+  getMachineList(name:string) {
+    this.machineList = [
+      this.productionList[0]
+      .filter((item:any) => { return item.productionName == name })
+      .map((item:any) => { return item = item.machine })
+      ];
   }
 
   // 讓datas重設為未篩選
@@ -50,16 +68,20 @@ export class InformationListComponent implements OnInit{
     this.getFactoryList();
   }
 
-  selectFactory(factoryName:string) {
-    this.productionOptions = this.factories
-      .filter((item) => { return item.factoryName == factoryName })
-      .map(item => { return item = item.production });
+  // 清空查詢
+  clearQuery(){
+    this.selectedfactory = '';
+    this.selectedproduction = '';
+    this.selectedmachine = '';
+    this.reset()
   }
 
-  quireButton(){
+  queryButton(){
     let filterData = this.datas.filter((item) =>{
-      if(!(this.selectedproduction == undefined)){
-        return item.factory_area == this.selectedfactory.factoryName && item.production_line == this.selectedproduction.name;
+      if(this.selectedfactory && this.selectedproduction && this.selectedmachine){
+        return item.factory_area == this.selectedfactory.factoryName && item.production_line == this.selectedproduction.productionName && item.machineName == this.selectedmachine.machineName;
+      }else if(this.selectedfactory && this.selectedproduction){
+        return item.factory_area == this.selectedfactory.factoryName && item.production_line == this.selectedproduction.productionName
       }else{
         return item.factory_area == this.selectedfactory.factoryName ;
       }

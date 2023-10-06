@@ -4,14 +4,56 @@
     "production":[
       {
         "id":1,
-        "name":"產線一"
+        "productionName":"產線一",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":3,
+            "machineName":"機台三"
+          }
+        ]
       },{
         "id":2,
-        "name":"產線二"
+        "productionName":"產線二",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":3,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":3,
-        "name":"產線三"
+        "productionName":"產線三",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":3,
+            "machineName":"機台三"
+          }
+        ]
       }
     ]
   },
@@ -20,15 +62,57 @@
     "production":[
       {
         "id":2,
-        "name":"產線二"
+        "productionName":"產線二",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":3,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":3,
-        "name":"產線三"
+        "productionName":"產線三",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":4,
-        "name":"產線四"
+        "productionName":"產線四",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       }
     ]
   },
@@ -37,15 +121,57 @@
     "production":[
       {
         "id":3,
-        "name":"產線三"
+        "productionName":"產線三",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":4,
-        "name":"產線四"
+        "productionName":"產線四",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":5,
-        "name":"產線五"
+        "productionName":"產線五",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       }
     ]
   },
@@ -54,15 +180,57 @@
     "production":[
       {
         "id":4,
-        "name":"產線四"
+        "productionName":"產線四",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":5,
-        "name":"產線五"
+        "productionName":"產線五",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":6,
-        "name":"產線六"
+        "productionName":"產線六",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       }
     ]
   },
@@ -71,15 +239,57 @@
     "production":[
       {
         "id":5,
-        "name":"產線五"
+        "productionName":"產線五",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":6,
-        "name":"產線六"
+        "productionName":"產線六",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":1,
-        "name":"產線一"
+        "productionName":"產線一",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       }
     ]
   },
@@ -88,15 +298,57 @@
     "production":[
       {
         "id":6,
-        "name":"產線六"
+        "productionName":"產線六",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":1,
-        "name":"產線一"
+        "productionName":"產線一",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       },
       {
         "id":2,
-        "name":"產線二"
+        "productionName":"產線二",
+        "machine":[
+          {
+            "id":1,
+            "machineName":"機台一"
+          },
+          {
+            "id":2,
+            "machineName":"機台二"
+          },
+          {
+            "id":2,
+            "machineName":"機台三"
+          }
+        ]
       }
     ]
   }

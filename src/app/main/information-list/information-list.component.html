@@ -1,13 +1,16 @@
 <h3 class="text-3xl text-center p-5">機台資訊列表</h3>
 
 <div class="flex justify-content-center gap-6 p-3">
-  <p-dropdown [options]="factories" [(ngModel)]="selectedfactory" optionLabel="factoryName" placeholder="請選擇廠區" (onChange)="selectFactory($event.value.factoryName)" (click)="reset()"></p-dropdown>
-  <p-dropdown [options]="productionOptions[0]" [(ngModel)]="selectedproduction" optionLabel="name" placeholder="請選擇產線" *ngIf="selectedfactory" (click)="reset()"></p-dropdown>
-  <p-button label="查詢" (click)="quireButton()"></p-button>
+  <p-dropdown [options]="factoryList" [(ngModel)]="selectedfactory" optionLabel="factoryName" placeholder="請選擇廠區" (onChange)="getProductionList($event.value.factoryName)" (click)="reset()"></p-dropdown>
+  <p-dropdown [options]="productionList[0]" [(ngModel)]="selectedproduction" optionLabel="productionName" placeholder="請選擇產線" *ngIf="selectedfactory" (onChange)="getMachineList($event.value.productionName)" (click)="reset()"></p-dropdown>
+  <p-dropdown [options]="machineList[0][0]" [(ngModel)]="selectedmachine" optionLabel="machineName" placeholder="請選擇機台" *ngIf="selectedproduction" (click)="reset()"></p-dropdown>
+
+  <p-button label="查詢" (click)="queryButton()"></p-button>
+  <p-button label="清空查詢" (click)="clearQuery()"></p-button>
 </div>
 
 <div class="m-5">
-  <p-table [value]="datas" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10]">
+  <p-table [value]="datas" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15]">
     <ng-template  pTemplate="header" >
       <tr>
         <th pSortableColumn="id">ID<p-sortIcon field="id"></p-sortIcon></th>
@@ -24,7 +27,7 @@
           'bg-blue-200':data.status == 'normal',
           'bg-red-500':data.status == 'alarm',
           'bg-black-alpha-10':data.status == 'close',
-          'bg-yellow-300':data.status == 'abnormal'}">{{data.name}}</td>
+          'bg-yellow-300':data.status == 'abnormal'}">{{data.machineName}}</td>
         <td>{{data.factory_area}}</td>
         <td>{{data.production_line}}</td>
         <td>{{data.status}}</td>

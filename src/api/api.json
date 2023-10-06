@@ -1,130 +1,385 @@
 [
     {
       "id":1,
-      "name":"機台一",
+      "machineName":"機台一",
       "factory_area":"光復",
       "production_line":"產線一",
       "status":"normal"
     },
     {
       "id":2,
-      "name":"機台一",
-      "factory_area":"南一",
-      "production_line":"產線二",
-      "status":"close"
+      "machineName":"機台二",
+      "factory_area":"光復",
+      "production_line":"產線一",
+      "status":"normal"
     },
     {
       "id":3,
-      "name":"機台二",
-      "factory_area":"南一",
-      "production_line":"產線三",
-      "status":"close"
+      "machineName":"機台三",
+      "factory_area":"光復",
+      "production_line":"產線一",
+      "status":"normal"
     },
     {
       "id":4,
-      "name":"機台二",
-      "factory_area":"光復",
+      "machineName":"機台一",
+      "factory_area":"南一",
       "production_line":"產線二",
-      "status":"abnormal"
+      "status":"close"
     },
     {
       "id":5,
-      "name":"機台一",
-      "factory_area":"南六",
-      "production_line":"產線三",
+      "machineName":"機台二",
+      "factory_area":"南一",
+      "production_line":"產線二",
       "status":"normal"
     },
     {
       "id":6,
-      "name":"機台二",
-      "factory_area":"南六",
-      "production_line":"產線四",
-      "status":"alarm"
+      "machineName":"機台三",
+      "factory_area":"南一",
+      "production_line":"產線二",
+      "status":"normal"
     },
     {
       "id":7,
-      "name":"機台三",
-      "factory_area":"光復",
+      "machineName":"機台一",
+      "factory_area":"南一",
       "production_line":"產線三",
       "status":"normal"
     },
     {
       "id":8,
-      "name":"機台一",
+      "machineName":"機台二",
+      "factory_area":"南一",
+      "production_line":"產線三",
+      "status":"close"
+    },
+    {
+      "id":9,
+      "machineName":"機台三",
+      "factory_area":"南一",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":10,
+      "machineName":"機台一",
+      "factory_area":"光復",
+      "production_line":"產線二",
+      "status":"abnormal"
+    },
+    {
+      "id":11,
+      "machineName":"機台二",
+      "factory_area":"光復",
+      "production_line":"產線二",
+      "status":"normal"
+    },
+    {
+      "id":12,
+      "machineName":"機台三",
+      "factory_area":"光復",
+      "production_line":"產線二",
+      "status":"normal"
+    },
+    {
+      "id":13,
+      "machineName":"機台一",
+      "factory_area":"南六",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":14,
+      "machineName":"機台二",
+      "factory_area":"南六",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":15,
+      "machineName":"機台三",
+      "factory_area":"南六",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":16,
+      "machineName":"機台一",
+      "factory_area":"南六",
+      "production_line":"產線四",
+      "status":"normal"
+    },
+    {
+      "id":17,
+      "machineName":"機台二",
+      "factory_area":"南六",
+      "production_line":"產線四",
+      "status":"normal"
+    },
+    {
+      "id":18,
+      "machineName":"機台三",
+      "factory_area":"南六",
+      "production_line":"產線四",
+      "status":"alarm"
+    },
+    {
+      "id":19,
+      "machineName":"機台一",
+      "factory_area":"光復",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":20,
+      "machineName":"機台二",
+      "factory_area":"光復",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":21,
+      "machineName":"機台三",
+      "factory_area":"光復",
+      "production_line":"產線三",
+      "status":"normal"
+    },
+    {
+      "id":22,
+      "machineName":"機台一",
       "factory_area":"展一",
       "production_line":"產線四",
       "status":"close"
     },
     {
-      "id":9,
-      "name":"機台一",
+      "id":23,
+      "machineName":"機台二",
+      "factory_area":"展一",
+      "production_line":"產線四",
+      "status":"normal"
+    },
+    {
+      "id":24,
+      "machineName":"機台三",
+      "factory_area":"展一",
+      "production_line":"產線四",
+      "status":"normal"
+    },
+    {
+      "id":25,
+      "machineName":"機台一",
       "factory_area":"展二",
       "production_line":"產線五",
       "status":"normal"
     },
     {
-      "id":10,
-      "name":"機台十",
+      "id":26,
+      "machineName":"機台二",
+      "factory_area":"展二",
+      "production_line":"產線五",
+      "status":"normal"
+    },
+    {
+      "id":27,
+      "machineName":"機台三",
+      "factory_area":"展二",
+      "production_line":"產線五",
+      "status":"normal"
+    },
+    {
+      "id":28,
+      "machineName":"機台一",
       "factory_area":"研發",
       "production_line":"產線六",
       "status":"normal"
     },
     {
-      "id":11,
-      "name":"機台三",
+      "id":29,
+      "machineName":"機台二",
+      "factory_area":"研發",
+      "production_line":"產線六",
+      "status":"normal"
+    },
+    {
+      "id":30,
+      "machineName":"機台三",
+      "factory_area":"研發",
+      "production_line":"產線六",
+      "status":"normal"
+    },
+    {
+      "id":31,
+      "machineName":"機台一",
       "factory_area":"南一",
       "production_line":"產線四",
       "status":"normal"
     },
     {
-      "id":12,
-      "name":"機台三",
+      "id":32,
+      "machineName":"機台二",
+      "factory_area":"南一",
+      "production_line":"產線四",
+      "status":"normal"
+    },
+    {
+      "id":33,
+      "machineName":"機台三",
+      "factory_area":"南一",
+      "production_line":"產線四",
+      "status":"normal"
+    },
+    {
+      "id":34,
+      "machineName":"機台一",
       "factory_area":"南六",
       "production_line":"產線五",
       "status":"normal"
     },
     {
-      "id":13,
-      "name":"機台二",
+      "id":35,
+      "machineName":"機台二",
+      "factory_area":"南六",
+      "production_line":"產線五",
+      "status":"normal"
+    },
+    {
+      "id":36,
+      "machineName":"機台三",
+      "factory_area":"南六",
+      "production_line":"產線五",
+      "status":"normal"
+    },
+    {
+      "id":37,
+      "machineName":"機台一",
       "factory_area":"展一",
       "production_line":"產線五",
       "status":"normal"
     },
     {
-      "id":14,
-      "name":"機台三",
+      "id":38,
+      "machineName":"機台二",
+      "factory_area":"展一",
+      "production_line":"產線五",
+      "status":"normal"
+    },
+    {
+      "id":39,
+      "machineName":"機台三",
+      "factory_area":"展一",
+      "production_line":"產線五",
+      "status":"normal"
+    },
+    {
+      "id":40,
+      "machineName":"機台一",
       "factory_area":"展一",
       "production_line":"產線六",
       "status":"normal"
     },
     {
-      "id":15,
-      "name":"機台二",
+      "id":41,
+      "machineName":"機台二",
+      "factory_area":"展一",
+      "production_line":"產線六",
+      "status":"normal"
+    },
+    {
+      "id":42,
+      "machineName":"機台三",
+      "factory_area":"展一",
+      "production_line":"產線六",
+      "status":"normal"
+    },
+    {
+      "id":43,
+      "machineName":"機台一",
+      "factory_area":"展二",
+      "production_line":"產線六",
+      "status":"normal"
+    },
+    {
+      "id":44,
+      "machineName":"機台二",
       "factory_area":"展二",
       "production_line":"產線六",
       "status":"abnormal"
     },
     {
-      "id":16,
-      "name":"機台三",
+      "id":45,
+      "machineName":"機台三",
+      "factory_area":"展二",
+      "production_line":"產線六",
+      "status":"normal"
+    },
+    {
+      "id":46,
+      "machineName":"機台一",
       "factory_area":"展二",
       "production_line":"產線一",
       "status":"normal"
     },
     {
-      "id":17,
-      "name":"機台二",
-      "factory_area":"研發",
+      "id":47,
+      "machineName":"機台二",
+      "factory_area":"展二",
       "production_line":"產線一",
-      "status":"close"
+      "status":"normal"
     },
     {
-      "id":18,
-      "name":"機台三",
+      "id":48,
+      "machineName":"機台三",
+      "factory_area":"展二",
+      "production_line":"產線一",
+      "status":"normal"
+    },
+    {
+      "id":49,
+      "machineName":"機台一",
       "factory_area":"研發",
       "production_line":"產線二",
       "status":"close"
+    },
+    {
+      "id":50,
+      "machineName":"機台二",
+      "factory_area":"研發",
+      "production_line":"產線二",
+      "status":"close"
+    },
+    {
+      "id":51,
+      "machineName":"機台三",
+      "factory_area":"研發",
+      "production_line":"產線二",
+      "status":"close"
+    },
+    {
+      "id":52,
+      "machineName":"機台一",
+      "factory_area":"研發",
+      "production_line":"產線一",
+      "status":"normal"
+    },
+    {
+      "id":53,
+      "machineName":"機台二",
+      "factory_area":"研發",
+      "production_line":"產線一",
+      "status":"normal"
+    },
+    {
+      "id":54,
+      "machineName":"機台三",
+      "factory_area":"研發",
+      "production_line":"產線一",
+      "status":"normal"
     }
+
+
+
 
   ]
 
