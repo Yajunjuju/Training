@@ -10,18 +10,19 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getData(){
-    // const factoryUrl = factoryName ? `factory_area = factoryName` : '';
-    // const factoryUrl =
-    return this.http.get<any>(`http://localhost:4200/api/api.json`);
-
-
+    return this.http.get<any>(`http://localhost:3000/data`);
   }
 
   getFactory(){
-
-    return this.http.get<any>('http://localhost:4200/api/factory.json')
-
+    return this.http.get<any>('http://localhost:3000/factory');
   }
 
+  getApply(){
+    return this.http.get<any>('http://localhost:3000/apply');
+  }
+
+  addApply(postData:any){
+    return this.http.post("http://localhost:3000/apply", postData)
+  }
 
 }

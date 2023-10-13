@@ -5,8 +5,9 @@
     <div class="pl-5 flex flex-column gap-5 align-items-center">
 
       <!-- 機台名稱欄位 -->
+      <!-- 各欄位需設置ngrx之變動參考 -->
       <div class="p-float-label">
-        <input pInputText type="text" id="machine_name" formControlName="machine_name">
+        <input pInputText type="text" id="machine_name" formControlName="machine_name" (click)="add_machine()">
         <label for="machine_name">機台名稱：</label>
         <small
           class="p-error block"
@@ -23,7 +24,7 @@
 
       <!-- 申請人名稱欄位 -->
       <div class="p-float-label">
-        <input pInputText type="text" id="person_name" formControlName="person_name">
+        <input pInputText type="text" id="person_name" formControlName="person_name" >
         <label for="person_name">申請人：</label>
         <small
           class="p-error block"

@@ -2,14 +2,14 @@
 <nav class="min-h-screen grid grid-nogutter" >
 
   <aside class="bg-gray-200 text-xl font-bold xl:col-2 lg:col-3">
-    <div routerLink="/information-list" routerLinkActive="active" class="px-5 py-4 text-center hover:text-cyan-700">機台資訊列表</div>
+    <div routerLink="/information-list" routerLinkActive="active" class="px-5 py-4 text-center cursor-pointer hover:text-cyan-700">機台資訊列表</div>
     <div routerLink="/new-apply" routerLinkActive="active" class="px-5 py-4 text-center cursor-pointer hover:text-cyan-700">新機台申請</div>
   </aside>
 
   <!--螢幕較小時改用sidebar -->
   <div class="md_screen ">
     <p-sidebar [(visible)]="sidebarVisible"  [fullScreen]="true">
-      <div routerLink="/information-list" routerLinkActive="active" class="px-5 py-4 text-center hover:text-cyan-700">機台資訊列表</div>
+      <div routerLink="/information-list" routerLinkActive="active" class="px-5 py-4 text-center cursor-pointer hover:text-cyan-700">機台資訊列表</div>
       <div routerLink="/new-apply" routerLinkActive="active" class="px-5 py-4 text-center cursor-pointer hover:text-cyan-700">新機台申請</div>
     </p-sidebar>
     <p-button (click)="sidebarVisible = true" icon="pi pi-th-large" ></p-button>

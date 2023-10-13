@@ -47,12 +47,12 @@ export class InformationListComponent implements OnInit{
   }
 
 
-
   getProductionList(factoryName:string) {
     this.productionList = this.factoryList
       .filter((item) => {return item.factoryName == factoryName })
       .map(item => {return item = item.production });
   }
+
 
   getMachineList(name:string) {
     this.machineList = [
@@ -68,6 +68,7 @@ export class InformationListComponent implements OnInit{
     this.getFactoryList();
   }
 
+
   // 清空查詢
   clearQuery(){
     this.selectedfactory = '';
@@ -77,13 +78,16 @@ export class InformationListComponent implements OnInit{
   }
 
   queryButton(){
+    // this.getDataList();
     let filterData = this.datas.filter((item) =>{
       if(this.selectedfactory && this.selectedproduction && this.selectedmachine){
         return item.factory_area == this.selectedfactory.factoryName && item.production_line == this.selectedproduction.productionName && item.machineName == this.selectedmachine.machineName;
       }else if(this.selectedfactory && this.selectedproduction){
         return item.factory_area == this.selectedfactory.factoryName && item.production_line == this.selectedproduction.productionName
-      }else{
+      }else if(this.selectedfactory){
         return item.factory_area == this.selectedfactory.factoryName ;
+      }else{
+        return
       }
     })
     this.datas = filterData;

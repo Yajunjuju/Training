@@ -20,6 +20,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { SharedModule } from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     InputTextModule,
     DialogModule,
-    SidebarModule
+    SidebarModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
 
   ],
   providers: [],
