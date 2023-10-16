@@ -7,7 +7,7 @@
       <!-- 機台名稱欄位 -->
       <!-- 各欄位需設置ngrx之變動參考 -->
       <div class="p-float-label">
-        <input pInputText type="text" id="machine_name" formControlName="machine_name" (click)="add_machine()">
+        <input pInputText type="text" id="machine_name" formControlName="machine_name" (change)="add_machine()">
         <label for="machine_name">機台名稱：</label>
         <small
           class="p-error block"
@@ -24,7 +24,7 @@
 
       <!-- 申請人名稱欄位 -->
       <div class="p-float-label">
-        <input pInputText type="text" id="person_name" formControlName="person_name" >
+        <input pInputText type="text" id="person_name" formControlName="person_name" (change)="add_machine()">
         <label for="person_name">申請人：</label>
         <small
           class="p-error block"
@@ -41,7 +41,7 @@
 
       <!-- 申請人電話欄位 -->
       <div class="p-float-label">
-        <input pInputText type="text" id="phone_number" formControlName="phone_number">
+        <input pInputText type="text" id="phone_number" formControlName="phone_number" (change)="add_machine()">
         <label for="phone_number">申請人電話：</label>
         <small
           class="p-error block"
@@ -58,7 +58,7 @@
 
       <!-- 申請日期欄位 -->
       <div class="p-float-label">
-        <input pInputText type="datetime" id="date" formControlName="date">
+        <input pInputText type="datetime" id="date" formControlName="date" (change)="add_machine()">
         <label for="date">申請日期：</label>
         <small
           class="p-error block"

@@ -1,6 +1,11 @@
 
+
 import { Component, OnInit} from '@angular/core';
-import { DataService } from '../../shared/data.service';
+import { Store } from '@ngrx/store';
+import { loadselectedfactory, loadselectedmachine, loadselectedproductionline } from 'src/app/Store/informationList/information-list.action';
+import { getdropdownselected } from 'src/app/Store/informationList/information-list.selector';
+import { dropDownSelectedModel } from 'src/app/Store/model/information-list.model';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-information-list',
@@ -13,22 +18,37 @@ export class InformationListComponent implements OnInit{
   // data$:Observable<any>;
   datas:Array<any> = [];
 
-  selectedfactory:any;
-  selectedproduction:any;
-  selectedmachine:any;
+  selectedfactory!:any;
+  selectedproduction!:any;
+  selectedmachine!:any;
 
   factoryList:Array<any> = [];
   productionList:Array<any> = [];
   machineList:Array<any> = [];
 
-  constructor(private datasvc:DataService){}
+  // factoryName!:string;
+  // productionName!:string;
+  // machineName!:string;
+
+  constructor(private datasvc:DataService, private store:Store<{dropdownselected:dropDownSelectedModel}>){}
 
   ngOnInit(): void {
 
-    // 從service取得資料
-    // this.data$ = this.datasvc.getData();
     this.getDataList();
     this.getFactoryList();
+
+    this.store.select(getdropdownselected).subscribe(res =>{
+      if(this.selectedfactory && this.selectedproduction && this.selectedmachine){
+       this.selectedfactory.factoryName = res.selectedfactory;
+       this.selectedproduction.productionName = res.selectedproduction;
+       this.selectedmachine.machineName = res.selectedmachine;
+      }
+      console.log(res)
+      console.log(this.selectedfactory)
+      console.log(this.selectedproduction)
+      console.log(this.selectedmachine)
+
+    })
 
   }
 
@@ -36,7 +56,6 @@ export class InformationListComponent implements OnInit{
     this.datasvc.getData().subscribe(res =>{
       this.datas = res;
     });
-
   }
 
   // 取得下拉選單資料
@@ -51,6 +70,7 @@ export class InformationListComponent implements OnInit{
     this.productionList = this.factoryList
       .filter((item) => {return item.factoryName == factoryName })
       .map(item => {return item = item.production });
+    this.store.dispatch(loadselectedfactory({value:this.selectedfactory.factoryName}));
   }
 
 
@@ -60,6 +80,7 @@ export class InformationListComponent implements OnInit{
       .filter((item:any) => { return item.productionName == name })
       .map((item:any) => { return item = item.machine })
       ];
+    this.store.dispatch(loadselectedproductionline({value:this.selectedproduction.productionName}));
   }
 
   // 讓datas重設為未篩選
@@ -92,6 +113,10 @@ export class InformationListComponent implements OnInit{
     })
     this.datas = filterData;
 
+  }
+
+  setState(){
+    this.store.dispatch(loadselectedmachine({value:this.selectedmachine.machineName}));
   }
 
 

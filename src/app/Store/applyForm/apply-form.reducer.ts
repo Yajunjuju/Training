@@ -1,4 +1,4 @@
-import { loaddate, loadmachinename, loadpersonname, loadphonenumber } from './apply-form.action';
+import { loaddate, loadmachinename, loadpersonname, loadphonenumber, resetapplyform } from './apply-form.action';
 import { applyFormInitialState } from './apply-form.state';
 import { createReducer, on } from "@ngrx/store";
 
@@ -30,4 +30,17 @@ const _applyFormReducer = createReducer(
       date:action.typing
     };
   }),
+  on(resetapplyform, (state) =>{
+    return{
+      ...state,
+      machine_name:'',
+      person_name:'',
+      phone_number:'',
+      date:''
+    }
+  })
 )
+
+export function applyFormReducer(state:any, action:any){
+  return _applyFormReducer(state, action);
+}
