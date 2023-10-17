@@ -2,7 +2,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { error } from 'console';
 import { loaddate, loadmachinename, loadpersonname, loadphonenumber,resetapplyform } from 'src/app/Store/applyForm/apply-form.action';
 import { getapply } from 'src/app/Store/applyForm/apply-form.selector';
 import { ApplyFormModel } from 'src/app/Store/model/apply-form.model';

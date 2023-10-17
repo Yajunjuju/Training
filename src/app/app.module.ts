@@ -1,5 +1,3 @@
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,8 +20,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { SharedModule } from './shared/shared.module';
+import { StoreModule} from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { applyFormReducer } from './Store/applyForm/apply-form.reducer';
-import { dropDownSelectedReducer } from './Store/informationList/information-list.reducer';
+// import { selectedDataReducer, selectedInputReducer } from './Store/informationList/information-list.reducer';
+import { dropDownSelectedReducer} from './Store/informationList/information-list.reducer';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,12 @@ import { dropDownSelectedReducer } from './Store/informationList/information-lis
     InputTextModule,
     DialogModule,
     SidebarModule,
-    StoreModule.forRoot({applyform:applyFormReducer, dropdownselected:dropDownSelectedReducer}),
+    StoreModule.forRoot({applyform:applyFormReducer,
+      // input:selectedInputReducer,
+      // data:selectedDataReducer,
+
+      dropdownselected:dropDownSelectedReducer
+    }),
     EffectsModule.forRoot([])
 
   ],
