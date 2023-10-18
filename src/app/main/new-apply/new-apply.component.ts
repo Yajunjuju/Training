@@ -1,10 +1,12 @@
-// import { ApplyList } from './apply-list';
+
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loaddate, loadmachinename, loadpersonname, loadphonenumber,resetapplyform } from 'src/app/Store/applyForm/apply-form.action';
 import { getapply } from 'src/app/Store/applyForm/apply-form.selector';
+import { getLogin } from 'src/app/Store/login/login.selector';
 import { ApplyFormModel } from 'src/app/Store/model/apply-form.model';
+import { loginModel } from 'src/app/Store/model/login.model';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -23,7 +25,7 @@ export class NewApplyComponent implements OnInit  {
   @Input() isLogin:boolean;
 
   // 透過DI取得FormBuilder物件，用以建立表單
-  constructor(private formBuilder:FormBuilder, private datasvc:DataService, private store:Store<{applyform:ApplyFormModel}>){}
+  constructor(private formBuilder:FormBuilder, private datasvc:DataService, private store:Store<{applyform:ApplyFormModel, login:loginModel}>){}
 
   // 當Component初始化時初始化表單
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class NewApplyComponent implements OnInit  {
       person_name:['',[Validators.required,Validators.minLength(2)]],
       phone_number:['',[Validators.required,Validators.pattern(/[0-9]/)]],
       date:['',[Validators.required,Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]]
+    })
+
+    this.store.select(getLogin).subscribe(res =>{
+      this.isLogin = res
     })
 
     // 取得下方申請列表
@@ -59,15 +65,17 @@ export class NewApplyComponent implements OnInit  {
     if(!this.isLogin){
       console.log(this.isLogin)
       alert("請先登入會員");
+      return
     }
   }
 
   onSubmit(){
-    console.log(this.newApplyForm.value)
   }
 
   showDialog() {
-      this.visible = true;
+      if(this.isLogin){
+        this.visible = true;
+      }
   }
 
   cancelApply(){
@@ -75,10 +83,9 @@ export class NewApplyComponent implements OnInit  {
   }
 
   confirmApply(){
-    this.datasvc.addApply(this.newApplyForm.value).subscribe(
-      res =>{ res; },
-      error => { console.log('error');}
-      )
+    this.datasvc.addApply(this.newApplyForm.value).subscribe(res =>{ 
+      res; 
+    });
 
     this.applyList.unshift(this.newApplyForm.value);
     this.newApplyForm.reset();

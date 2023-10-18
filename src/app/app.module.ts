@@ -23,8 +23,8 @@ import { SharedModule } from './shared/shared.module';
 import { StoreModule} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { applyFormReducer } from './Store/applyForm/apply-form.reducer';
-// import { selectedDataReducer, selectedInputReducer } from './Store/informationList/information-list.reducer';
 import { dropDownSelectedReducer} from './Store/informationList/information-list.reducer';
+import { loginReducer } from './Store/login/login.reducer';
 
 @NgModule({
   declarations: [
@@ -49,12 +49,7 @@ import { dropDownSelectedReducer} from './Store/informationList/information-list
     InputTextModule,
     DialogModule,
     SidebarModule,
-    StoreModule.forRoot({applyform:applyFormReducer,
-      // input:selectedInputReducer,
-      // data:selectedDataReducer,
-
-      dropdownselected:dropDownSelectedReducer
-    }),
+    StoreModule.forRoot({applyform:applyFormReducer, dropdownselected:dropDownSelectedReducer, login:loginReducer }),
     EffectsModule.forRoot([])
 
   ],

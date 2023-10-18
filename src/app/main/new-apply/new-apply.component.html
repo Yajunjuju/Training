@@ -5,7 +5,6 @@
     <div class="pl-5 flex flex-column gap-5 align-items-center">
 
       <!-- 機台名稱欄位 -->
-      <!-- 各欄位需設置ngrx之變動參考 -->
       <div class="p-float-label">
         <input pInputText type="text" id="machine_name" formControlName="machine_name" (change)="add_machine()">
         <label for="machine_name">機台名稱：</label>
@@ -73,7 +72,8 @@
           >請輸入日期yyyy-mm-dd</small>
       </div>
 
-      <p-button type="submit" class="pb-5" [disabled]="!newApplyForm.valid" (click)="showDialog()">送出</p-button>
+      <p-button type="submit" class="pb-5" [disabled]="(!newApplyForm.valid || !this.isLogin)" (click)="showDialog()" (click)="submit()">送出</p-button>
+
 
       <!-- 確認彈窗 -->
       <p-dialog header="Header" [(visible)]="visible" [style]="{ width: 'mx-auto'}" [draggable]="false" [resizable]="false">

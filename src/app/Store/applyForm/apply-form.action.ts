@@ -1,6 +1,5 @@
 import { createAction, props } from "@ngrx/store";
 
-
 // 設定action type
 export const LOAD_MACHINE_NAME = '[Apply Form] load machine name';
 export const LOAD_PERSON_NAME = '[Apply Form] load person name';

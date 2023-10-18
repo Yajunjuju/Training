@@ -1,12 +1,9 @@
-import { Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { Store } from '@ngrx/store';
-import { loadselectedfactory, loadselecteddata, loadselectedmachine, loadselectedproductionline } from 'src/app/Store/informationList/information-list.action';
-import { getdatalist, getselecteddata, getselectedfactory, getselectedproduction } from 'src/app/Store/informationList/information-list.selector';
-import { dropDownSelectedModel, selecteddata } from 'src/app/Store/model/information-list.model';
 
-// import { loadselectedfactory, loadselectedmachine, loadselectedproductionline } from 'src/app/Store/informationList/information-list.action';
-// import { getselectedfactory, getselectedproduction } from 'src/app/Store/informationList/information-list.selector';
-// import { dropDownSelectedModel, productionModel } from 'src/app/Store/model/information-list.model';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadselectedfactory, loadselectedmachine, loadselectedproductionline, reserselected } from 'src/app/Store/informationList/information-list.action';
+import { getselectedfactory, getselectedmachine, getselectedproduction } from 'src/app/Store/informationList/information-list.selector';
+import { dropDownSelectedModel} from 'src/app/Store/model/information-list.model';
 
 import { DataService } from 'src/app/shared/data.service';
 
@@ -16,34 +13,25 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./information-list.component.css']
 })
 
-export class InformationListComponent implements OnInit, OnChanges{
+export class InformationListComponent implements OnInit{
 
-
-
-  // data$:Observable<any>;
   datas:Array<any> = [];
 
   selectedfactory!:any;
   selectedproduction!:any;
   selectedmachine!:any;
 
+  // dropdownList:dropdownListModel = {
+  //   selectedFactory:this.selectedfactory,
+  //   selectedProduction:this.selectedproduction,
+  //   selectedMachine:this.selectedmachine
+  // }
+
   factoryList:Array<any> = [];
   productionList:Array<any> = [];
   machineList:Array<any> = [];
 
-  // factoryName!:string;
-  // productionName!:string;
-  // machineName!:string;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // 返回頁面應該從哪撈取資料？
-
-  }
-
-  constructor(private datasvc:DataService,
-    // private store:Store<{input:selectedinput}>
-    private store:Store<{dropdownselected:dropDownSelectedModel}>
-    ){}
+  constructor(private datasvc:DataService, private store:Store<{dropdownselected:dropDownSelectedModel}>){}
 
   ngOnInit(): void {
 
@@ -51,33 +39,24 @@ export class InformationListComponent implements OnInit, OnChanges{
     this.getDataList();
     this.getFactoryList();
 
-    // 取得暫存狀態
+    // 取得暫存之選擇欄位
     this.store.select(getselectedfactory).subscribe(res =>{
-      // this.selectedfactory = res;
-      // this.factoryList = res;
-    });
-
+      this.selectedfactory = res;
+    })
     this.store.select(getselectedproduction).subscribe(res =>{
-      // this.returndata = res;
-      // this.selectedproduction.setValue({id:this.returndata.id, productionName:this.returndata.productionName, machine:this.returndata.machine})
-      // this.selectedproduction = res;
-      // console.log(res)
+      this.selectedproduction = res;
+    })
+    this.store.select(getselectedmachine).subscribe(res =>{
+      this.selectedmachine = res;
     })
 
-    // ************************************************************ 測試版本二
-
-    // this.store.select(getselectedinput).subscribe(res =>{
-    //   // this.selectedfactory.factoryName = res.selectedfactory
-    //   console.log(res)
-    // })
-    // 取得暫存之下拉選單資料
-    // this.store.select(getdatalist).subscribe(res =>{
-    //     // this.datalist = res
-    //   console.log(res);
-    // })
-    // ************************************************************ 測試版本二
-
-
+    // 當欄位有值產生相對應的list
+    if(this.selectedfactory){
+      this.productionList = this.selectedfactory.production
+      if(this.selectedproduction){
+        this.machineList = this.selectedproduction.machine
+      }
+    }
   }
 
   // 取得完整資料
@@ -96,46 +75,33 @@ export class InformationListComponent implements OnInit, OnChanges{
 
   // 取得產線下拉選單
   getProductionList(factoryName:string) {
-
-
     this.productionList = this.factoryList
       .filter((item) => {return item.factoryName == factoryName })
-      .map(item => {return item = item.production });
+      .map(item => {return item = item.production })[0];
 
-    // ************************************************************ 測試版本二
-    // // 下拉選單資料進暫存
-    this.store.dispatch(loadselecteddata({data:this.factoryList}));
+      this.selectedproduction = null;
+      this.selectedmachine = null;
 
-    // if(this.selectedfactory){
-    //   const _selectedinput:selectedinput ={
-    //     selectedfactory:this.selectedfactory,
-    //     selectedproduction:[],
-    //     selectedmachine:[]
-    //   }
-    //   this.store.dispatch(loadselectedinput({value:_selectedinput}))
-    // }else{
-
-    // }
-    // **************************************************************
-
-    // 廠區欄位暫存
-    this.store.dispatch(loadselectedfactory({value:this.selectedfactory.factoryName, data:this.selectedfactory}));
+      this.store.dispatch(loadselectedfactory({data:this.selectedfactory}));
+      this.store.dispatch(loadselectedproductionline({data:this.selectedproduction}));
+      this.store.dispatch(loadselectedmachine({data:this.selectedmachine}));
   }
 
   // 取得機台下拉選單
   getMachineList(name:string) {
-    this.machineList = [
-      this.productionList[0]
+    this.machineList = this.productionList
       .filter((item:any) => { return item.productionName == name })
-      .map((item:any) => { return item = item.machine })
-      ];
-    // 產線欄位暫存
-    this.store.dispatch(loadselectedproductionline({value:this.selectedproduction.productionName, data:this.productionList}));
+      .map((item:any) => { return item = item.machine })[0];
+
+      this.selectedmachine = null;
+
+      this.store.dispatch(loadselectedproductionline({data:this.selectedproduction}));
+      this.store.dispatch(loadselectedmachine({data:this.selectedmachine}));
   }
 
-  // 機台欄位暫存
+  // 選擇欄位暫存
   setState(){
-    this.store.dispatch(loadselectedmachine({value:this.selectedmachine.machineName, data:this.selectedmachine}));
+    this.store.dispatch(loadselectedmachine({data:this.selectedmachine}));
   }
 
   // 讓datas重設為未篩選
@@ -144,16 +110,16 @@ export class InformationListComponent implements OnInit, OnChanges{
     this.getFactoryList();
   }
 
-
   // 清空查詢
   clearQuery(){
-    this.selectedfactory = '';
-    this.selectedproduction = '';
-    this.selectedmachine = '';
-    this.reset()
+    this.selectedfactory = null;
+    this.selectedproduction = null;
+    this.selectedmachine = null;
+    this.reset();
+    this.store.dispatch(reserselected());
   }
 
-  // 比對選擇欄位過濾顯示資料
+  // 查詢:比對選擇欄位過濾顯示資料
   queryButton(){
     let filterData = this.datas.filter((item) =>{
       if(this.selectedfactory && this.selectedproduction && this.selectedmachine){
@@ -171,8 +137,8 @@ export class InformationListComponent implements OnInit, OnChanges{
 
 
 
-
 }
+
 
 
 

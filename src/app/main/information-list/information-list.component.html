@@ -1,12 +1,9 @@
-<h3 class="text-3xl text-center p-5">機台資訊列表</h3>
-
-
+<h3 class="text-3xl text-center p-5" i18n>機台資訊列表</h3>
 
 <div class="flex justify-content-center gap-6 p-3">
-  <p-dropdown [options]="factoryList" [(ngModel)]="selectedfactory" optionLabel="factoryName" placeholder="請選擇廠區" (onChange)="getProductionList($event.value.factoryName)" (click)="reset()" ></p-dropdown>
-  <p-dropdown [options]="productionList[0]" [(ngModel)]="selectedproduction" optionLabel="productionName" placeholder="請選擇產線" *ngIf="selectedfactory" (onChange)="getMachineList($event.value.productionName)" (click)="reset()" ></p-dropdown>
-  <p-dropdown [options]="machineList[0][0]" [(ngModel)]="selectedmachine" optionLabel="machineName" placeholder="請選擇機台" *ngIf="selectedproduction" (click)="reset()" (onChange)="setState()"></p-dropdown>
-
+  <p-dropdown [options]="factoryList" [(ngModel)]="selectedfactory" optionLabel="factoryName" placeholder="請選擇廠區" (onChange)="getProductionList($event.value.factoryName)" (click)="reset()"></p-dropdown>
+  <p-dropdown [options]="productionList" [(ngModel)]="selectedproduction" optionLabel="productionName" placeholder="請選擇產線" *ngIf="selectedfactory" (onChange)="getMachineList($event.value.productionName)" (click)="reset()"></p-dropdown>
+  <p-dropdown [options]="machineList" [(ngModel)]="selectedmachine" optionLabel="machineName" placeholder="請選擇機台" *ngIf="selectedproduction" (click)="reset()" (onChange)="setState()"></p-dropdown>
   <p-button label="查詢" (click)="queryButton()"></p-button>
   <p-button label="清空查詢" (click)="clearQuery()"></p-button>
 </div>

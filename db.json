@@ -749,6 +749,20 @@
       "phone_number": "0965321789",
       "date": "2023-10-13",
       "id": 2
+    },
+    {
+      "machine_name": "機台一",
+      "person_name": "吳志明",
+      "phone_number": "0977-888-999",
+      "date": "2023-10-16",
+      "id": 3
+    },
+    {
+      "machine_name": "機台二",
+      "person_name": "吳瑞凡",
+      "phone_number": "0977664321",
+      "date": "2023-10-18",
+      "id": 4
     }
   ]
 }
