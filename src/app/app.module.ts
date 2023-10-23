@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgrxFormsModule } from 'ngrx-forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -25,6 +28,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { applyFormReducer } from './Store/applyForm/apply-form.reducer';
 import { dropDownSelectedReducer} from './Store/informationList/information-list.reducer';
 import { loginReducer } from './Store/login/login.reducer';
+import { appReducer, initialState } from './main/new-apply/new-apply.reducer-forms';
 
 @NgModule({
   declarations: [
@@ -49,8 +53,13 @@ import { loginReducer } from './Store/login/login.reducer';
     InputTextModule,
     DialogModule,
     SidebarModule,
-    StoreModule.forRoot({applyform:applyFormReducer, dropdownselected:dropDownSelectedReducer, login:loginReducer }),
-    EffectsModule.forRoot([])
+    StoreModule.forRoot(
+      // {applyform:applyFormReducer, dropdownselected:dropDownSelectedReducer, login:loginReducer,NewApplyForm:appReducer  }
+      appReducer,{initialState}
+      ),
+    EffectsModule.forRoot([]),
+    NgrxFormsModule,
+    StoreDevtoolsModule.instrument(),
 
   ],
   providers: [],

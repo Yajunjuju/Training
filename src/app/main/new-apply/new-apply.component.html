@@ -1,10 +1,57 @@
-<form [formGroup]="newApplyForm" (ngSubmit)="onSubmit()">
+<ng-container *ngIf="newApplyForm$ | async as newApplyForm">
+
+  <form [ngrxFormState]="newApplyForm">
+    <div class="w-9 lg:w-5 shadow-2 border-round mx-auto my-8">
+      <h2 class="text-center p-3">新機台申請</h2>
+      <div class="pl-5 flex flex-column gap-5 align-items-center">
+        <!-- 機台名稱欄位 -->
+        <label for="machine_name">機台名稱：</label>
+        <input pInputText type="text" id="machine_name" [ngrxFormControlState]="newApplyForm.controls.machine_name" >
+
+        <label for="person_name">申請人：</label>
+        <input pInputText type="text" id="person_name" [ngrxFormControlState]="newApplyForm.controls.person_name" >
+
+        <label for="phone_number">申請人電話：</label>
+        <input pInputText type="text" id="phone_number" [ngrxFormControlState]="newApplyForm.controls.phone_number" >
+
+        <label for="date">申請日期：</label>
+        <input pInputText type="text" id="date" [ngrxFormControlState]="newApplyForm.controls.date" >
+
+        <p-button type="submit" class="pb-5" [disabled]="newApplyForm.isPristine && newApplyForm.isUntouched && newApplyForm.isUnsubmitted" (click)="submit()" (click)="showDialog()">送出</p-button>
+
+        <p-dialog header="Header" [(visible)]="visible" [style]="{ width: 'mx-auto'}" [draggable]="false" [resizable]="false">
+          <ng-template pTemplate="header">
+              <span class="text-xl font-bold">新機台申請-申請資料確認</span>
+          </ng-template>
+            <section class="flex flex-column gap-3 ml-5">
+              <div>機台名稱：{{newApplyForm.controls.machine_name.value}}</div>
+              <div>申請人：{{newApplyForm.controls.person_name.value}}</div>
+              <div>申請人電話：{{newApplyForm.controls.phone_number.value}}</div>
+              <div>申請日期：{{newApplyForm.controls.date.value}}</div>
+            </section>
+          <ng-template pTemplate="footer">
+            <div class="flex justify-content-between">
+              <p-button icon="pi pi-times" (click)="visible = false" label="取消送出" styleClass="p-button-secondary" (click)="cancelApply()"></p-button>
+              <p-button icon="pi pi-check" (click)="visible = false" label="確認送出" styleClass="p-button-success" (click)="confirmApply()" ></p-button>
+            </div>
+          </ng-template>
+        </p-dialog>
+
+      </div>
+    </div>
+  </form>
+
+</ng-container>
+
+
+<!-- ngrx版本 -->
+<!-- <form [formGroup]="newApplyForm" (ngSubmit)="onSubmit()">
   <div class="w-9 lg:w-5 shadow-2 border-round mx-auto my-8">
     <h2 class="text-center p-3">新機台申請</h2>
 
     <div class="pl-5 flex flex-column gap-5 align-items-center">
 
-      <!-- 機台名稱欄位 -->
+      機台名稱欄位
       <div class="p-float-label">
         <input pInputText type="text" id="machine_name" formControlName="machine_name" (change)="add_machine()">
         <label for="machine_name">機台名稱：</label>
@@ -21,7 +68,7 @@
           >名稱長度至少大於二</small>
       </div>
 
-      <!-- 申請人名稱欄位 -->
+      申請人名稱欄位
       <div class="p-float-label">
         <input pInputText type="text" id="person_name" formControlName="person_name" (change)="add_machine()">
         <label for="person_name">申請人：</label>
@@ -38,7 +85,7 @@
           >名字長度至少大於二</small>
       </div>
 
-      <!-- 申請人電話欄位 -->
+      申請人電話欄位
       <div class="p-float-label">
         <input pInputText type="text" id="phone_number" formControlName="phone_number" (change)="add_machine()">
         <label for="phone_number">申請人電話：</label>
@@ -55,7 +102,7 @@
           >請輸入數字</small>
       </div>
 
-      <!-- 申請日期欄位 -->
+      申請日期欄位
       <div class="p-float-label">
         <input pInputText type="datetime" id="date" formControlName="date" (change)="add_machine()">
         <label for="date">申請日期：</label>
@@ -75,7 +122,7 @@
       <p-button type="submit" class="pb-5" [disabled]="(!newApplyForm.valid || !this.isLogin)" (click)="showDialog()" (click)="submit()">送出</p-button>
 
 
-      <!-- 確認彈窗 -->
+      確認彈窗
       <p-dialog header="Header" [(visible)]="visible" [style]="{ width: 'mx-auto'}" [draggable]="false" [resizable]="false">
         <ng-template pTemplate="header">
             <span class="text-xl font-bold">新機台申請-申請資料確認</span>
@@ -95,7 +142,7 @@
       </p-dialog>
     </div>
   </div>
-</form>
+</form> -->
 
 <hr>
 
