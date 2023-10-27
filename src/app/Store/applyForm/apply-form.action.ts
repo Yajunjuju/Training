@@ -5,7 +5,9 @@ export const LOAD_MACHINE_NAME = '[Apply Form] load machine name';
 export const LOAD_PERSON_NAME = '[Apply Form] load person name';
 export const LOAD_PHONE_NUMBER = '[Apply Form] load phone number';
 export const LOAD_DATE = '[Apply Form] load date';
-export const RESET_APPLY_FORM = '[Applu Form] reset apply form';
+export const RESET_APPLY_FORM = '[Apply Form] reset apply form';
+
+export const loadNgrxFormsData = createAction('[New Apply Form] load ngrx forms data' );
 
 // createaction
 export const loadmachinename = createAction(LOAD_MACHINE_NAME, props<{typing:string}>());

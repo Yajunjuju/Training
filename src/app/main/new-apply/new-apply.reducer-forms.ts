@@ -1,5 +1,7 @@
 
-import { FormGroupState, createFormGroupState, createFormStateReducerWithUpdate, updateGroup, validate} from "ngrx-forms";
+
+import { Action } from "@ngrx/store";
+import { FormGroupState, createFormGroupState, createFormStateReducerWithUpdate, onNgrxForms, setValue, updateGroup, validate, wrapReducerWithFormStateUpdate} from "ngrx-forms";
 import { minLength, pattern, required } from 'ngrx-forms/validation';
 
 
@@ -17,17 +19,23 @@ export const initialApplyForm:ApplyForm = {
   date:'',
 }
 
-export interface AppState{
-  newApplyForm:FormGroupState<AppForm>;
-}
-
 export interface AppForm{
   newApplyForm:ApplyForm
 }
 
-export const INITIAL_STATE = createFormGroupState<AppForm>('NewApplyForm', {
+export interface AppState{
+  newApplyForm:FormGroupState<AppForm>;
+}
+
+const FORM_ID = 'NewApplyForm';
+
+export const INITIAL_STATE = createFormGroupState<AppForm>(FORM_ID, {
   newApplyForm:initialApplyForm
 })
+
+export const initialState:AppState={
+  newApplyForm:INITIAL_STATE
+}
 
 export const newApplyFormValidation = updateGroup<ApplyForm>({
   machine_name:validate([required,minLength(2)]),
@@ -43,13 +51,36 @@ export const formReducer = createFormStateReducerWithUpdate<AppForm>(
   })
 )
 
-export const appReducer = {
-  newApplyForm:formReducer
+export function appReducer(state = initialState, action:Action): AppState{
+  const newApplyForm = formReducer(state.newApplyForm, action);
+  if(newApplyForm !== state.newApplyForm){
+    state = {...state,newApplyForm};
+  }
+
+  switch(action.type){
+    // case '[New Apply Form] load ngrx forms data':
+    //   return state;
+    default:{
+      return state
+    }
+  }
 }
 
-export const initialState:AppState = {
-  newApplyForm:INITIAL_STATE
-}
+// export const appReducer = {
+//   newApplyForm:formReducer
+// }
+
+// const _applyReducer = createReducer(
+//   INITIAL_STATE,
+//   onNgrxForms()
+// )
+
+// export  const applyReducer = wrapReducerWithFormStateUpdate(
+//   _applyReducer,
+//   (state) => state.ApplyForm,
+//   newApplyFormValidation
+// );
+
 
 
 

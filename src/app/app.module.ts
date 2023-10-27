@@ -28,7 +28,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { applyFormReducer } from './Store/applyForm/apply-form.reducer';
 import { dropDownSelectedReducer} from './Store/informationList/information-list.reducer';
 import { loginReducer } from './Store/login/login.reducer';
-import { appReducer, initialState } from './main/new-apply/new-apply.reducer-forms';
+import { appReducer} from './main/new-apply/new-apply.reducer-forms';
 
 @NgModule({
   declarations: [
@@ -54,8 +54,8 @@ import { appReducer, initialState } from './main/new-apply/new-apply.reducer-for
     DialogModule,
     SidebarModule,
     StoreModule.forRoot(
-      // {applyform:applyFormReducer, dropdownselected:dropDownSelectedReducer, login:loginReducer,NewApplyForm:appReducer  }
-      appReducer,{initialState}
+      { dropdownselected:dropDownSelectedReducer, login:loginReducer,NewApplyForm:appReducer  }
+      // appReducer,{initialState}
       ),
     EffectsModule.forRoot([]),
     NgrxFormsModule,

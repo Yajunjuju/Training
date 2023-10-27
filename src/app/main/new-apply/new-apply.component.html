@@ -5,19 +5,44 @@
       <h2 class="text-center p-3">新機台申請</h2>
       <div class="pl-5 flex flex-column gap-5 align-items-center">
         <!-- 機台名稱欄位 -->
-        <label for="machine_name">機台名稱：</label>
-        <input pInputText type="text" id="machine_name" [ngrxFormControlState]="newApplyForm.controls.machine_name" >
+        <div>
+          <div class="p-float-label">
+            <input pInputText type="text" id="machine_name" [ngrxFormControlState]="newApplyForm.controls.machine_name" >
+            <label for="machine_name">機台名稱：</label>
+          </div>
+          <small class="p-error block" *ngIf="newApplyForm.controls.machine_name?.isPristine && newApplyForm.controls.machine_name?.isTouched" >機台名稱為必填</small>
+          <small class="p-error block" *ngIf="newApplyForm.controls.machine_name.isInvalid">名稱長度至少大於二</small>
+        </div>
 
-        <label for="person_name">申請人：</label>
-        <input pInputText type="text" id="person_name" [ngrxFormControlState]="newApplyForm.controls.person_name" >
+        <div>
+          <div class="p-float-label">
+            <input pInputText type="text" id="person_name" [ngrxFormControlState]="newApplyForm.controls.person_name" >
+            <label for="person_name">申請人：</label>
+          </div>
+          <small class="p-error block" *ngIf="newApplyForm.controls.person_name?.isPristine && newApplyForm.controls.person_name?.isTouched" >申請人為必填</small>
+          <small class="p-error block" *ngIf="newApplyForm.controls.person_name.isInvalid" >名字長度至少大於二</small>
+        </div>
 
-        <label for="phone_number">申請人電話：</label>
-        <input pInputText type="text" id="phone_number" [ngrxFormControlState]="newApplyForm.controls.phone_number" >
+        <div>
+          <div class="p-float-label">
+            <input pInputText type="text" id="phone_number" [ngrxFormControlState]="newApplyForm.controls.phone_number" >
+            <label for="phone_number">申請人電話：</label>
+          </div>
+          <small class="p-error block" *ngIf="newApplyForm.controls.phone_number?.isPristine && newApplyForm.controls.phone_number?.isTouched" >申請人電話為必填</small>
+          <small class="p-error block" *ngIf="newApplyForm.controls.phone_number.isInvalid" >請填入數字</small>
+        </div>
 
-        <label for="date">申請日期：</label>
-        <input pInputText type="text" id="date" [ngrxFormControlState]="newApplyForm.controls.date" >
+        <div>
+          <div class="p-float-label">
+            <input pInputText type="text" id="date" [ngrxFormControlState]="newApplyForm.controls.date" >
+            <label for="date">申請日期：</label>
+          </div>
+          <small class="p-error block" *ngIf="newApplyForm.controls.date?.isPristine && newApplyForm.controls.date?.isTouched" >申請日期為必填</small>
+          <small class="p-error block" *ngIf="newApplyForm.controls.date.isInvalid" >請輸入日期yyyy-mm-dd</small>
+        </div>
 
-        <p-button type="submit" class="pb-5" [disabled]="newApplyForm.isPristine && newApplyForm.isUntouched && newApplyForm.isUnsubmitted" (click)="submit()" (click)="showDialog()">送出</p-button>
+
+        <p-button type="submit" class="pb-5" [disabled]="newApplyForm.isInvalid || newApplyForm.isValidationPending" (click)="submit()" (click)="showDialog()">送出</p-button>
 
         <p-dialog header="Header" [(visible)]="visible" [style]="{ width: 'mx-auto'}" [draggable]="false" [resizable]="false">
           <ng-template pTemplate="header">
@@ -111,7 +136,7 @@
           *ngIf="
                 !newApplyForm.controls['date'].untouched &&
                 newApplyForm.controls['date'].errors?.['required']"
-          >申請人電話為必填</small>
+          >申請日期為必填</small>
         <small
           class="p-error block"
           *ngIf="

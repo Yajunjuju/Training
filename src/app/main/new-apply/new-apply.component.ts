@@ -8,10 +8,9 @@ import { getLogin } from 'src/app/Store/login/login.selector';
 import { ApplyFormModel } from 'src/app/Store/model/apply-form.model';
 import { loginModel } from 'src/app/Store/model/login.model';
 import { DataService } from 'src/app/shared/data.service';
-import { AppState, ApplyForm, INITIAL_STATE, initialApplyForm } from './new-apply.reducer-forms';
+import { AppForm, AppState, ApplyForm, initialState } from './new-apply.reducer-forms';
 import { Observable, map, take } from 'rxjs';
 import { FormGroupState, ResetAction, SetValueAction } from 'ngrx-forms';
-import { Actions } from '@ngrx/effects';
 
 @Component({
   selector: 'app-new-apply',
@@ -22,27 +21,28 @@ import { Actions } from '@ngrx/effects';
 export class NewApplyComponent implements OnInit {
 
   applyList:ApplyList[]=[];
+  newApplyForm:ApplyList;
   visible: boolean = false;
   newApplyForm$:Observable<FormGroupState<ApplyForm>>;
+  @Input() isLogin:boolean;
 
 
-  constructor(private store:Store<AppState>, private datasvc:DataService ){}
+  constructor(private store:Store<{NewApplyForm:AppState,login:loginModel}>, private datasvc:DataService ){}
 
   ngOnInit(): void {
-    // console.log(this.newApplyForm$)
-    this.newApplyForm$ = this.store.pipe(select(s =>s.newApplyForm.controls.newApplyForm));
-    console.log(INITIAL_STATE.value)
-
-    // 取得下方申請列表
+    this.newApplyForm$ = this.store.pipe(select(s =>s.NewApplyForm.newApplyForm.controls.newApplyForm));
     this.getApplyList();
+
+     this.store.select(getLogin).subscribe(res =>{
+      this.isLogin = res
+    })
   }
+
+  // Ngrx-forms
 
   reset(){
-    this.store.dispatch(new SetValueAction(INITIAL_STATE.id, INITIAL_STATE.value));
-    this.store.dispatch(new ResetAction(INITIAL_STATE.id));
-  }
-
-  submit(){
+    this.store.dispatch(new SetValueAction(initialState.newApplyForm.id, initialState.newApplyForm.value));
+    this.store.dispatch(new ResetAction(initialState.newApplyForm.id));
   }
 
   getApplyList(){
@@ -51,10 +51,18 @@ export class NewApplyComponent implements OnInit {
     })
   }
 
+  submit(){
+    if(!this.isLogin){
+      console.log(this.isLogin)
+      alert("請先登入會員");
+      return
+    }
+  }
+
   showDialog() {
-      // if(this.isLogin){
+      if(this.isLogin){
         this.visible = true;
-      // }
+      }
   }
 
   cancelApply(){
@@ -63,11 +71,13 @@ export class NewApplyComponent implements OnInit {
 
 
   confirmApply(){
-    this.datasvc.addApply(INITIAL_STATE.value.newApplyForm).subscribe(res =>{
-      console.log(res)
+    this.newApplyForm$.subscribe(res =>{
+      this.newApplyForm = res.value;
+    })
+    this.datasvc.addApply(this.newApplyForm).subscribe(res =>{
       res;
     });
-    this.applyList.unshift(INITIAL_STATE.value.newApplyForm);
+    this.applyList.unshift(this.newApplyForm);
     this.reset();
 
   }
@@ -118,13 +128,13 @@ export class NewApplyComponent implements OnInit {
 //     })
 //   }
 
-//   submit(){
-//     if(!this.isLogin){
-//       console.log(this.isLogin)
-//       alert("請先登入會員");
-//       return
-//     }
-//   }
+  // submit(){
+  //   if(!this.isLogin){
+  //     console.log(this.isLogin)
+  //     alert("請先登入會員");
+  //     return
+  //   }
+  // }
 
 //   onSubmit(){
 //   }
@@ -173,7 +183,6 @@ export class NewApplyComponent implements OnInit {
 // Ngrx版本 *******************************************************
 }
 export interface ApplyList {
-  // id:number;
   machine_name:string;
   person_name:string;
   phone_number:string;
